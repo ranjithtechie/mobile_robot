@@ -1,0 +1,28 @@
+
+<launch>  
+
+
+<param name="robot_description" command="xacro '$(find mobile_robot)/urdf/rover.urdf.xacro'"/>
+
+
+
+<node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui"/>
+<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/> 
+
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!-- <arg name="world_name" value="$(find  turtlebot3_gazebo)/world/empty_world"/> -->
+    
+    <arg name="paused"  value="true"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui"  value="true"/>
+    <arg name="headless"  value="false"/>
+    <arg name="debug"  value="false"/>
+
+    
+     
+</include>
+
+<node  name="spawningurdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model rover -param robot_description"/>
+    
+
+</launch>    
